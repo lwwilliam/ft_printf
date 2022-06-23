@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwilliam <lwilliam@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 23:23:06 by lwilliam          #+#    #+#             */
-/*   Updated: 2022/06/20 17:26:31 by lwilliam         ###   ########.fr       */
+/*   Created: 2022/05/23 23:40:02 by lwilliam          #+#    #+#             */
+/*   Updated: 2022/06/22 15:29:41 by lwilliam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr_fd(char *s, int *alen)
+void	ft_putnbr(int n, int *c)
 {
-	int	x;
-
-	x = 0;
-	if (!s)
-		return ;
-	while (s[x] != '\0')
+	if (n < 0)
 	{
-		ft_putchar_fd(s[x], 1, alen);
-		x++;
+		ft_putchar('-');
+		++*c;
+		if (n == -2147483648)
+		{
+			ft_putchar('2');
+			++*c;
+			n = -147483648;
+		}
+		n = n * -1;
+	}
+	if (n >= 10)
+	{
+		ft_putnbr((n / 10), c);
+		ft_putnbr((n % 10), c);
+	}
+	else
+	{
+		ft_putchar(n + 48);
+		++*c;
 	}
 }

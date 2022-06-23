@@ -1,45 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ptr_address.c                                      :+:      :+:    :+:   */
+/*   bx_or_sx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwilliam <lwilliam@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 17:25:57 by lwilliam          #+#    #+#             */
-/*   Updated: 2022/06/23 10:38:14 by lwilliam         ###   ########.fr       */
+/*   Created: 2022/06/21 17:57:51 by lwilliam          #+#    #+#             */
+/*   Updated: 2022/06/23 13:05:58 by lwilliam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	int_len(unsigned long args)
-{
-	int	i;
-
-	i = 0;
-	if (args == '0')
-		return (1);
-	if (args != 0)
-	{
-		args = args / 16;
-		i++;
-	}
-	return (i);
-}
-
-void	ptr_address(unsigned long args, int *c)
+void	bx_or_sx(unsigned int args, char type, int *c)
 {
 	if (args >= 16)
 	{
-		ptr_address((args / 16), c);
-		ptr_address((args % 16), c);
+		bx_or_sx(args / 16, type, c);
+		bx_or_sx(args % 16, type, c);
 	}
 	else
 	{
 		if (args <= 9)
 			ft_putchar(args + '0');
 		else
-			ft_putchar((args - 10) + 'a');
+		{
+			if (type == 'x')
+				ft_putchar((args - 10) + 'a');
+			else if (type == 'X')
+				ft_putchar((args - 10) + 'A');
+		}
 		++*c;
 	}
 }

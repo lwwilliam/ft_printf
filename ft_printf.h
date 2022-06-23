@@ -6,7 +6,7 @@
 /*   By: lwilliam <lwilliam@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:33:00 by lwilliam          #+#    #+#             */
-/*   Updated: 2022/06/20 17:25:25 by lwilliam         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:03:33 by lwilliam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,11 @@
 # include <stdarg.h>
 
 int		ft_printf(const char *type, ...);
-void	ft_putstr_fd(char *s, int *alen);
-void	ptr_address(char args, int *alen);
-void	ft_putnbr_fd(int n, int fd, int *alen);
-void	ft_putchar_fd(char c, int fd, int *alen);
-
-
-
-
-
-
+int		ft_putchar(char x);
+void	ft_putnbr(int n, int *c);
+int		ft_putstr(char *s);
+void	ptr_address(unsigned long args, int *c);
+void	unsigned_int(unsigned int n, int *c);
+void	bx_or_sx(unsigned int args, char type, int *c);
 
 #endif

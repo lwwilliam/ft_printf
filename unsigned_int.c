@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   unsigned_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwilliam <lwilliam@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 23:21:49 by lwilliam          #+#    #+#             */
-/*   Updated: 2022/06/20 17:41:45 by lwilliam         ###   ########.fr       */
+/*   Created: 2022/06/21 11:06:23 by lwilliam          #+#    #+#             */
+/*   Updated: 2022/06/22 15:31:33 by lwilliam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar_fd(char c, int fd, int *alen)
+void	unsigned_int(unsigned int n, int *c)
 {
-	*alen += write (fd, &c, 1);
+	if (n >= 10)
+	{
+		unsigned_int((n / 10), c);
+		unsigned_int((n % 10), c);
+	}
+	else
+	{
+		ft_putchar(n + 48);
+		++*c;
+	}
 }

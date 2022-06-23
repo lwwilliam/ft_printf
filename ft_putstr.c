@@ -1,45 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ptr_address.c                                      :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwilliam <lwilliam@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 17:25:57 by lwilliam          #+#    #+#             */
-/*   Updated: 2022/06/23 10:38:14 by lwilliam         ###   ########.fr       */
+/*   Created: 2022/05/23 23:23:06 by lwilliam          #+#    #+#             */
+/*   Updated: 2022/06/22 15:37:54 by lwilliam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	int_len(unsigned long args)
+int	ft_putstr(char *s)
 {
-	int	i;
+	int	x;
 
-	i = 0;
-	if (args == '0')
-		return (1);
-	if (args != 0)
+	x = 0;
+	if (!s)
 	{
-		args = args / 16;
-		i++;
+		write (1, "(null)", 6);
+		return (6);
 	}
-	return (i);
-}
-
-void	ptr_address(unsigned long args, int *c)
-{
-	if (args >= 16)
+	while (s[x] != '\0')
 	{
-		ptr_address((args / 16), c);
-		ptr_address((args % 16), c);
+		write(1, &s[x], 1);
+		x++;
 	}
-	else
-	{
-		if (args <= 9)
-			ft_putchar(args + '0');
-		else
-			ft_putchar((args - 10) + 'a');
-		++*c;
-	}
+	return (x);
 }

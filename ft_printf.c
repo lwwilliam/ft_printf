@@ -6,31 +6,37 @@
 /*   By: lwilliam <lwilliam@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:32:30 by lwilliam          #+#    #+#             */
-/*   Updated: 2022/06/20 17:31:04 by lwilliam         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:03:22 by lwilliam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	type_check(char *type, va_list args, int x, int *alen)
+int	type_check(char const *type, va_list args, int x)
 {
-	char	c;
+	int	c;
 
+	c = 0;
 	if (type[x] == 'c')
-	{
-		c = va_arg(args, int);
-		alen += write(1, &c, 1);
-	}
-	if (type[x] == '%')
-		alen += write(1, "%", 1);
+		c = ft_putchar(va_arg(args, int));
 	if (type[x] == 's')
-		ft_putstr_fd(args, alen);
+		c = ft_putstr(va_arg(args, char *));
 	if (type[x] == 'p')
-		ptr_address(args, alen);
+	{
+		c += write(1, "0x", 2);
+		ptr_address(va_arg(args, unsigned long), &c);
+	}
 	if (type[x] == 'd' || type[x] == 'i')
-		ft_putnbr_fd (args, 1, alen);
+		ft_putnbr(va_arg(args, int), &c);
 	if (type[x] == 'u')
-		unsigned_int (args, alen);
+		unsigned_int(va_arg(args, unsigned int), &c);
+	if (type[x] == 'x')
+		bx_or_sx(va_arg(args, int), 'x', &c);
+	if (type[x] == 'X')
+		bx_or_sx(va_arg(args, int), 'X', &c);
+	if (type[x] == '%')
+		c += write(1, "%", 1);
+	return (c);
 }
 
 int	ft_printf(const char *type, ...)
@@ -38,21 +44,19 @@ int	ft_printf(const char *type, ...)
 	va_list	args;
 	int		len;
 	int		x;
-	int		*alen;
 
 	va_start (args, type);
 	x = 0;
 	len = 0;
-	alen = &len;
 	while (type[x])
 	{
 		if (type[x] == '%')
 		{
 			x++;
-			type_check(type, args, x, alen);
+			len += type_check(type, args, x);
 		}
 		else
-			write(1, &type[x], 1);
+			len += write(1, &type[x], 1);
 		x++;
 	}
 	va_end(args);

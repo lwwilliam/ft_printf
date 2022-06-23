@@ -6,11 +6,11 @@
 #    By: lwilliam <lwilliam@student.42kl.edu.my>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/20 14:31:59 by lwilliam          #+#    #+#              #
-#    Updated: 2022/06/20 15:05:18 by lwilliam         ###   ########.fr        #
+#    Updated: 2022/06/21 14:31:07 by lwilliam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf.a
+NAME = libftprintf.a
 
 SRCS = *.c
 
