@@ -6,7 +6,7 @@
 /*   By: lwilliam <lwilliam@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 23:23:06 by lwilliam          #+#    #+#             */
-/*   Updated: 2022/06/22 15:37:54 by lwilliam         ###   ########.fr       */
+/*   Updated: 2022/06/23 20:27:20 by lwilliam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,5 @@ int	ft_putstr(char *s)
 	}
 	return (x);
 }
+
+ssh kcheong@localhost -p 4242
